@@ -4,7 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.signup, name="signup")
+    path('', views.home, name="home"),
+    path('home', views.home, name="home"),
+    path('signup', views.signup, name="signup"),
+    path('login', views.login, name="login")
 ]
 
-# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG == False:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

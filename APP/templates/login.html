@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/general.css">
+    <title>Login - MovieBox</title>
+</head>
+<body class="login">
+
+    <header>
+        <div>
+            <h1><a href="home">MovieBox</a></h1>
+        </div>
+
+        <nav>
+            <div></div>
+            <div></div>
+            <div></div>
+        </nav>
+
+        <div class="links">
+            <a href="signup">
+
+                Signup
+            </a>
+
+            <a class="active">
+
+                Login
+            </a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="sub">
+            <h1>Login - MovieBox</h1>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ loginform }}
+                <p>Don't have an account? <a href="signup">Signup</a></p>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+<script src="/static/app.js" defer></script>
+</html>

@@ -6,17 +6,87 @@
     user-select: none;
     transition: all 0.3s ease;
 }
-body[class="signup"]{
-    background: url(/static/images/luffy.jpg);
+body[class="signup"],
+body[class="login"]{
+    background: url(/static/images/luffy.jpg), linear-gradient(to right, rgba(0, 0, 0, 0.7));
     background-blend-mode: multiply;
-    /* background-size: cover; */
     background-position: center;
     color: white;
 }
-span{
-    color: black;
+
+/* HOME PAGE */
+body[class="home"]{
+    background: url(/static/images/hero.jpg);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    color: white;
 }
+body[class="home"] .container{
+    min-height: 100vh;
+}
+body[class="home"] .container .sub{
+    -webkit-backdrop-filter: blur(12px) brightness(100%);
+    backdrop-filter: blur(12px) brightness(100%);
+    background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.7), rgba(0,0,0,0.6), rgba(0,0,0,0.5), rgba(0,0,0,0.4), transparent, transparent);
+    padding: 0px 20px 0 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    height: 100vh;
+    width: min(600px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+body[class="home"] .container .sub h1{
+    font-variant: small-caps;
+}
+body[class="home"] .container .sub p{
+    margin-top: 10px;
+}
+body[class="home"] .container .sub .links{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: auto;
+    gap: 30px;
+}
+body[class="home"] .container .sub .links a{
+    padding: 10px 50px;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    background: rgb(6, 70, 6);
+    background: black;
+    border-radius: 5px;
+}
+body[class="home"] .container .sub .links a::before,
+body[class="home"] .container .sub .links a::after{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border-radius: inherit;
+    background: conic-gradient(blue, red, blue);
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    padding: 3px;
+    filter: blur(2px);
+    transition: filter 0.5s ease;
+}
+body[class="home"] .container .sub .links a:hover::after{
+    filter: blur(20px);    
+}
+
+
+/* HEADER */
 header{
+    z-index: 1;
     display: flex;
     align-items: center;
     padding: 10px 30px;
@@ -29,6 +99,10 @@ header{
 }
 header h1{
     font-variant: small-caps;
+}
+header h1 a{
+    text-decoration: none;
+    color: white;
 }
 header .links{
     display: flex;
@@ -76,8 +150,8 @@ header nav.open div:last-child{
     opacity: 1;
     transform: translateY(-6px) rotate(-40deg);
 }
-
-.container{
+body[class="signup"] .container,
+body[class="login"] .container{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +159,8 @@ header nav.open div:last-child{
     flex-direction: column;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.container .sub{
+body[class="signup"] .container .sub,
+body[class="login"] .container .sub{
     -webkit-backdrop-filter: blur(10px) brightness(100%);
     backdrop-filter: blur(10px) brightness(100%);
     padding: 40px;
@@ -93,7 +168,7 @@ header nav.open div:last-child{
     box-shadow: 0px 0px 10px rgb(126, 124, 124);
     border-bottom: 1px solid white;
     border-left: 1px solid white;
-    width: min(450px, 90%);
+    width: min(450px, 80%);
 }
 @keyframes openLink{
     from{height: 0px;}
@@ -141,13 +216,19 @@ form button:hover{
     border-radius: 5px;
 }
 form a{
-    color: rgb(6, 70, 6);
+    color: white;
+}
+form a:hover{
+    text-transform: uppercase;
 }
 
 @media screen and (max-width: 768px) {
     header{
         justify-content: space-around;
         z-index: 2;
+    }
+    h1{
+        font-size: 25px;
     }
     header nav{
         display: flex;
@@ -157,20 +238,40 @@ form a{
         position: absolute;
         overflow: hidden;
         top: 100%;
-        width: 95%;
+        width: 100%;
+        height: 0;
+        padding: 0px 10px;
         -webkit-backdrop-filter: blur(10px) brightness(10%);
         backdrop-filter: blur(10px) brightness(10%);
         background: black;
-        animation: closeLink 0.2s linear forwards;
     }    
     header .links.open{
         animation: openLink 0.4s linear forwards;
     }
+    header .links.close{
+        animation: closeLink 0.2s linear forwards;
+    }
     header .links a{
         background: rgba(0, 0, 0, 0.9);
         display: block;
-        border-radius: 0px;
+        border-radius: 5px;
         text-align: center;
         margin: 5px 0;
+
+    }
+    body[class="login"] .container .sub,
+    body[class="signup"] .container .sub{
+        padding: 20px;
+    }
+    body[class="login"] .container .sub h1,
+    body[class="signup"] .container .sub h1{
+        font-size: 25px;
+    }
+    body[class="home"] .container .sub{
+    -webkit-backdrop-filter: blur(3px) brightness(50%);
+    backdrop-filter: blur(3px) brightness(50%);
+    }
+    body[class="home"] .container .sub .links a{
+        padding: 5px 40px;
     }
 }

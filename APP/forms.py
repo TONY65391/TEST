@@ -12,3 +12,15 @@ class SignupForm(forms.ModelForm):
         self.fields['username'].widget.attrs.update({'placeholder': 'Choose a username'})
         self.fields['email'].widget.attrs.update({'placeholder': 'Enter your email address'})
         self.fields['password'].widget.attrs.update({'placeholder': 'Create a password'})
+        
+class LoginForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['username', 'email', 'password']
+        
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['username'].widget.attrs.update({'placeholder': 'Choose a username'})
+    #     self.fields['email'].widget.attrs.update({'placeholder': 'Enter your email address'})
+    #     self.fields['password'].widget.attrs.update({'placeholder': 'Create a password'})
+        
