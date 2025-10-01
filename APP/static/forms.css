@@ -13,6 +13,7 @@ body[class="signup"]{
     background: url(https://images.pexels.com/photos/2341830/pexels-photo-2341830.jpeg), linear-gradient(to right, rgba(0, 0, 0, 0.5));
     background-blend-mode: multiply;
     background-size: cover;
+    background-position: center;
     color: white;
 }
 header{
@@ -89,6 +90,9 @@ header nav.open div:last-child{
     backdrop-filter: blur(10px) brightness(100%);
     padding: 40px;
     border-radius: 10px;
+    box-shadow: 0px 0px 10px rgb(126, 124, 124);
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
 }
 @keyframes openLink{
     from{height: 0px;}
@@ -114,6 +118,7 @@ form div input{
     background: white;
     border: none;
     color: black;
+    border-radius: 2px;
 }
 form div input:focus,
 form div input:hover{
@@ -144,9 +149,10 @@ form a{
         position: absolute;
         overflow: hidden;
         top: 100%;
-        width: 100%;
+        width: 95%;
         -webkit-backdrop-filter: blur(10px) brightness(10%);
         backdrop-filter: blur(10px) brightness(10%);
+        background: black;
         animation: closeLink 0.2s linear forwards;
     }    
     header .links.open{

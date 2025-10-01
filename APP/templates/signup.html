@@ -7,17 +7,45 @@
     <title>Signup</title>
 </head>
 <body class="signup">
+
+    <header>
+        <div>
+            <h1>MovieBox</h1>
+        </div>
+
+        <nav>
+            <div></div>
+            <div></div>
+            <div></div>
+        </nav>
+
+        <div class="links">
+            <a class="active">
+
+                Signup
+            </a>
+
+            <a href="login">
+
+                Login
+            </a>
+        </div>
+    </header>
     
     <div class="container">
         <div class="sub">
+            <h1>Signup - MovieBox</h1>
             <form action="" method="post" enctype="multipart/form-data">
-                <h1>Signup - MovieBox</h1>
                 {% csrf_token %}
                 {{ signupform }}
+                <p>Already have an account? <a href="login">Login</a></p>
                 <button type="submit">Signup</button>
             </form>
         </div>
     </div>
 
+    <img src="static/users/cryptgo.png" alt="">
+
 </body>
+<script src="/static/app.js" defer></script>
 </html>
