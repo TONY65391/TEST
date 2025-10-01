@@ -7,10 +7,9 @@
     transition: all 0.3s ease;
 }
 body[class="signup"]{
-    background: url(https://images.pexels.com/photos/2341830/pexels-photo-2341830.jpeg), linear-gradient(to right, rgba(0, 0, 0, 0.5));
-    background: url(/static/users/cryptgo.png);
+    background: url(/static/images/signup.jpg), linear-gradient(to right, rgba(0, 0, 0, 0.7));
     background-blend-mode: multiply;
-    background-size: cover;
+    /* background-size: cover; */
     background-position: center;
     color: white;
 }
