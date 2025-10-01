@@ -10,5 +10,5 @@ urlpatterns = [
     path('login', views.login, name="login")
 ]
 
-if settings.DEBUG == False:
+if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

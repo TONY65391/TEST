@@ -79,7 +79,8 @@ body[class="home"] .container .sub .links a::after{
     filter: blur(2px);
     transition: filter 0.5s ease;
 }
-body[class="home"] .container .sub .links a:hover::after{
+body[class="home"] .container .sub .links a:hover::after,
+body[class="home"] .container .sub .links a:hover::before{
     filter: blur(20px);    
 }
 
@@ -268,8 +269,12 @@ form a:hover{
         font-size: 25px;
     }
     body[class="home"] .container .sub{
-    -webkit-backdrop-filter: blur(3px) brightness(50%);
-    backdrop-filter: blur(3px) brightness(50%);
+        -webkit-backdrop-filter: blur(3px) brightness(50%);
+        backdrop-filter: blur(3px) brightness(50%);
+        text-align: center;
+    }
+    body[class="home"] .container .sub .links{
+        margin: 40px auto;
     }
     body[class="home"] .container .sub .links a{
         padding: 5px 40px;
