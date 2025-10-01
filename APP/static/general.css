@@ -8,7 +8,7 @@
 }
 body[class="signup"],
 body[class="login"]{
-    background: url(/static/images/luffy.jpg), linear-gradient(to right, rgba(0, 0, 0, 0.7));
+    background: url(/static/images/luffy.jpg);
     background-blend-mode: multiply;
     background-position: center;
     color: white;
