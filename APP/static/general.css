@@ -6,13 +6,23 @@
     user-select: none;
     transition: all 0.3s ease;
 }
+
+/* SIGNUP and LOGIN */
 body[class="signup"],
 body[class="login"]{
     background: url(/static/images/luffy.jpg);
+    background: conic-gradient(darkolivegreen, darkgreen, darkslategrey, darkolivegreen);
+    color: white;
     background-blend-mode: multiply;
     background-position: center;
-    color: white;
 }
+body[class="signup"] header,
+body[class="login"] header,
+body[class="error"] header{
+    background: rgba(0,0,0,0.6);
+}
+
+
 
 /* HOME PAGE */
 body[class="home"]{
@@ -85,6 +95,87 @@ body[class="home"] .container .sub .links a:hover::before{
 }
 
 
+/* ERROR PAGE */
+body[class="error"]{
+    background: rgb(1, 27, 27);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+}
+body[class="error"] .container{
+    text-align: center;
+    width: min(400px, 80%);
+    background: black;
+    position: relative;
+    padding: 30px;
+    border-radius: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+@property --angle{
+    initial-value: 0deg;
+    syntax: '<angle>';
+    inherits: False;
+}
+body[class="error"] .container::after,
+body[class="error"] .container::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    background: conic-gradient(from var(--angle), rgb(90, 37, 37), rgb(39, 39, 107));
+    padding: 3px;
+    filter: blur(20px);
+    animation: spin 2s linear infinite;
+}
+@keyframes spin{
+    0%{filter: blur(20px); --angle:0deg;}
+    50%{filter: blur(40px); --angle:180deg;}
+    100%{filter: blur(20px); --angle:360deg;}
+}
+body[class="error"] .container i{
+    font-size: 50px;
+    padding: 30px;
+    background: rgb(245, 78, 78);
+    width: 110px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    box-shadow: 0px 0px 30px rgb(245, 78, 78);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(2px 4px 3px black);
+}
+body[class="error"] .container h1{
+    font-variant: small-caps;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+body[class="error"] .container a{
+    text-decoration: none;
+    color: white;
+    background: black;
+    display: block;
+    border: 2px solid white;
+    padding: 5px 30px;
+    width: fit-content;
+    margin: 20px auto 0px auto;
+    border-radius: 3px;
+    box-shadow: 4px 2px 4px white;
+}
+body[class="error"] .container a:hover{
+    border-radius: 20px;
+    box-shadow: 0px 0px 0px white;
+}
+
+
+
 /* HEADER */
 header{
     z-index: 1;
@@ -92,8 +183,6 @@ header{
     align-items: center;
     padding: 10px 30px;
     justify-content: space-between;
-    position: absolute;
-    top: 0;
     width: 100%;
     -webkit-backdrop-filter: blur(10px) brightness(100%);
     backdrop-filter: blur(10px) brightness(100%);
@@ -151,6 +240,9 @@ header nav.open div:last-child{
     opacity: 1;
     transform: translateY(-6px) rotate(-40deg);
 }
+
+
+/* SIGNUP and LOGIN */
 body[class="signup"] .container,
 body[class="login"] .container{
     display: flex;
@@ -158,18 +250,21 @@ body[class="login"] .container{
     justify-content: center;
     min-height: 100vh;
     flex-direction: column;
+    margin-top: -40px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.4));
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    h4{margin: 10px 0;}
+    a{color: white;}
 }
 body[class="signup"] .container .sub,
 body[class="login"] .container .sub{
-    -webkit-backdrop-filter: blur(10px) brightness(100%);
-    backdrop-filter: blur(10px) brightness(100%);
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgb(126, 124, 124);
-    border-bottom: 1px solid white;
-    border-left: 1px solid white;
+    border: 1px solid grey;
     width: min(450px, 80%);
+    -webkit-backdrop-filter: blur(10px) brightness(80%);
+    backdrop-filter: blur(10px) brightness(80%);
+    box-shadow: 0px 0px 20px rgb(6, 70, 6);
 }
 @keyframes openLink{
     from{height: 0px;}
@@ -182,46 +277,57 @@ body[class="login"] .container .sub{
 
 
 form{
-    margin-top: 20px;
+    margin-top: 10px;
 }
 form div{
     margin: 10px 0;
 }
-form div input{
-    width: 100%;
-    margin-top: 5px;
+form p{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 25% auto;
+}
+form p label{
+    background: rgb(6, 70, 6);
+    padding: 5px 0 5px 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-variant: small-caps;
+}
+form p input{
     padding: 5px 0 5px 10px;
     outline: 2px solid transparent;
     background: white;
-    border: none;
+    border: 1px solid grey;
     color: black;
-    border-radius: 2px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+
 }
-form div input:focus,
-form div input:hover{
+form p input:focus,
+form p input:hover{
     outline-color: rgb(6, 70, 6);
-    outline-color: blue;
+    /* outline-color: blue; */
 }
 form button{
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     border: none;
     padding: 10px 0;
     cursor: pointer;
     background: wheat;
-    color: black;
+    background: rgb(6, 70, 6);
+    color: white;
     box-shadow: 4px 5px 5px black;
+    border-radius: 5px;
 }
 form button:hover{
     box-shadow: 0px 0px 0px black;
     transform: translate(3px, 4px);
     border-radius: 5px;
 }
-form a{
-    color: white;
-}
-form a:hover{
-    text-transform: uppercase;
+form p input[type="checkbox"]{
+    accent-color: green;
 }
 
 @media screen and (max-width: 768px) {
@@ -279,5 +385,12 @@ form a:hover{
     }
     body[class="home"] .container .sub .links a{
         padding: 5px 40px;
+    }
+
+    body[class="error"] .container i{
+        font-size: 30px;
+        padding: 20px 10px;
+        width: 80px;
+        height: 80px;
     }
 }

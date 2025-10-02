@@ -7,9 +7,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <title>Login - MovieBox</title>
+    <title>Error - MovieBox</title>
 </head>
-<body class="login">
+<body class="error">
 
     <header>
         <div>
@@ -30,24 +30,20 @@
                 Signup
             </a>
 
-            <a class="active">
+            <a href="login">
                 <i class="fa-solid fa-right-to-bracket"></i>
                 Login
             </a>
         </div>
+
     </header>
-    
+
+
     <div class="container">
-        <div class="sub">
-            <h1>Login - MovieBox</h1>
-            <form action="formhandler" method="post" enctype="multipart/form-data">
-                <h4>Don't have an account? <a href="signup">Signup</a></h4>
-                {% csrf_token %}
-                {{ loginform.as_p }}
-                <h4><input type="checkbox" name="remeber" id="remember" title="Remember Me"> Save Password | <a href="retrieve">Forgot Password?</a></h4>
-                <button type="submit">Login</button>
-            </form>
-        </div>
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <h1>Oops . . . An Error Occured</h1>
+        <p>Hint: {{ message }}</p>
+        <a href="signup">Go back</a>
     </div>
 
 </body>

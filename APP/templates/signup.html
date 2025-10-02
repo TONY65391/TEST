@@ -4,13 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/general.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>Signup - MovieBox</title>
 </head>
 <body class="signup">
 
     <header>
         <div>
-            <h1><a href="home">MovieBox</a></h1>
+            <h1><a href="home">
+                <i class="fa-solid fa-video"></i>
+                MovieBox</a></h1>
         </div>
 
         <nav>
@@ -21,24 +26,27 @@
 
         <div class="links">
             <a class="active">
-
+                <i class="fa-solid fa-user-plus"></i>
                 Signup
             </a>
 
             <a href="login">
-
+                <i class="fa-solid fa-right-to-bracket"></i>
                 Login
             </a>
         </div>
+
     </header>
     
     <div class="container">
         <div class="sub">
             <h1>Signup - MovieBox</h1>
-            <form action="" method="post" enctype="multipart/form-data">
+            <h4>Already have an account? <a href="login">Login</a></h4>
+            <form action="formhandler" method="post" enctype="multipart/form-data">
+                {{ message }}
                 {% csrf_token %}
-                {{ signupform }}
-                <p>Already have an account? <a href="login">Login</a></p>
+                {{ signupform.as_p }}
+                
                 <button type="submit">Signup</button>
             </form>
         </div>
