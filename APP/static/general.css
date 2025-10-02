@@ -27,7 +27,6 @@ body[class="error"] header{
 /* HOME PAGE */
 body[class="home"]{
     background: url(/static/images/hero.jpg);
-    background-blend-mode: multiply;
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -36,15 +35,14 @@ body[class="home"]{
 body[class="home"] .container{
     min-height: 100vh;
     margin-top: -62px;
+    height: 100vh;
 }
 body[class="home"] .container .sub{
-    -webkit-backdrop-filter: blur(12px) brightness(100%);
-    backdrop-filter: blur(12px) brightness(100%);
     background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.7), rgba(0,0,0,0.6), rgba(0,0,0,0.5), rgba(0,0,0,0.4), transparent, transparent);
     padding: 0px 20px 0 30px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     line-height: 1.5;
-    height: 100vh;
+    height: 100%;
     width: min(600px, 100%);
     display: flex;
     align-items: center;
@@ -180,7 +178,7 @@ body[class="error"] .container a:hover{
 
 /* HEADER */
 header{
-    z-index: 1;
+    z-index: 50;
     display: flex;
     align-items: center;
     padding: 10px 30px;
@@ -288,6 +286,7 @@ form p{
     margin-top: 10px;
     display: grid;
     grid-template-columns: 30% auto;
+    overflow-x: hidden;
 }
 form p label{
     background: rgb(6, 70, 6);
@@ -300,7 +299,8 @@ form p input{
     padding: 5px 0 5px 10px;
     outline: 2px solid transparent;
     background: white;
-    border: 1px solid grey;
+    border: none;
+    border-radius: 0px;
     color: black;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -335,7 +335,6 @@ form p input[type="checkbox"]{
 @media screen and (max-width: 768px) {
     header{
         justify-content: space-around;
-        z-index: 2;
     }
     h1{
         font-size: 25px;
@@ -351,8 +350,6 @@ form p input[type="checkbox"]{
         width: 100%;
         height: 0;
         padding: 0px 10px;
-        -webkit-backdrop-filter: blur(10px) brightness(10%);
-        backdrop-filter: blur(10px) brightness(10%);
         background: black;
     }    
     header .links.open{
@@ -367,7 +364,6 @@ form p input[type="checkbox"]{
         border-radius: 5px;
         text-align: center;
         margin: 5px 0;
-
     }
     body[class="login"] .container .sub,
     body[class="signup"] .container .sub{
@@ -378,8 +374,6 @@ form p input[type="checkbox"]{
         font-size: 25px;
     }
     body[class="home"] .container .sub{
-        -webkit-backdrop-filter: blur(3px) brightness(50%);
-        backdrop-filter: blur(3px) brightness(50%);
         text-align: center;
     }
     body[class="home"] .container .sub .links{
