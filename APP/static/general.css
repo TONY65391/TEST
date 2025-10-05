@@ -354,8 +354,9 @@ form p input[type="checkbox"]{
     animation: hideError 0.3s ease-in-out forwards;
 }
 @keyframes hideError{
-    to{transform: translateY(20px); opacity: 0; pointer-events: none; visibility: hidden;}
-    from{transform: translateY(0px); opacity: 1; pointer-events: all; visibility: visible;}
+    0%{transform: translateY(0px); opacity: 1; pointer-events: all; visibility: visible;}
+    50%{transform: translateY(-20px); opacity: 0.5; pointer-events: none; visibility: visible;}
+    100%{transform: translateY(20px); opacity: 0; pointer-events: none; visibility: hidden;}
 }
 .error{
     position: fixed;
