@@ -6,11 +6,11 @@ from django.core.validators import RegexValidator
 class UserProfile(models.Model):
     name = models.CharField(max_length=100)
     
-    username = models.CharField(max_length=20, validators=[RegexValidator(regex=r'^[a-zA-Z0-9_]*$', message='Username can only contain letters, numbers, and underscores \nHint: @/[1-10][a-z][A-Z]', code='Invalid Username')])
+    username = models.CharField(max_length=20)
     
     email = models.EmailField(unique=True)
     
-    password = models.CharField(max_length=20, validators=[RegexValidator(regex=r'^[a-zA-Z0-9_]*$', message='Password can only contain letters, numbers, and underscores.\nHint: @/[1-10][a-z][A-Z]', code='Invalid Password')])
+    password = models.CharField(max_length=20)
     
     Profile_Picture = models.ImageField(default="", blank=False, null=False, upload_to='APP/static/users')
     

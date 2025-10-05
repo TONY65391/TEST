@@ -22,7 +22,25 @@ def login(request):
 
 def formhandler(request):
     if request.POST and request.FILES:
+        usernameExists = UserProfile.objects.filter(username = request.POST["username"]).exists()
+        emailExists = UserProfile.objects.filter(email = request.POST["email"]).exists()
         form = SignupForm(request.POST, request.FILES)
+        error = loader.get_template('error.html')
         if form.is_valid():
-            return HttpResponse('Valid File')
-        return render(request, "error.html", {'message':form.errors.as_text})
+            profile = loader.get_template('profile.html')
+            # if usernameExists and emailExists:
+            #     context = {'message': "Username and Email already exists"}
+            #     return HttpResponse(error.render(request=request, context=context))
+            # elif usernameExists == False and emailExists:
+            #     context = {'message': "Email already exists"}
+            #     return HttpResponse(error.render(request=request, context=context))
+            # elif usernameExists and emailExists == False:
+            #     context = {'message': "Username already exists"}
+            #     return HttpResponse(error.render(request=request, context=context))
+            # if usernameExists or emailExists:
+            #     return HttpResponseRedirect(request, "signup.html", {'message':form.errors})
+            # else:
+            form.save()
+            return redirect("login")
+        context = {'message':form.errors.as_text()}
+        return HttpResponse(error.render(request=request, context=context))

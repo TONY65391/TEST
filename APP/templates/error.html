@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/general.css">
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -14,7 +15,7 @@
     <header>
         <div>
             <h1><a href="home">
-                <i class="fa-solid fa-video"></i>
+                <img src="/static/images/favicon.png" alt="">
                 MovieBox</a></h1>
         </div>
 
@@ -39,11 +40,13 @@
     </header>
 
 
-    <div class="container">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <h1>Oops . . . An Error Occured</h1>
-        <p>Hint: {{ message }}</p>
-        <a href="signup">Go back</a>
+    <div class="sub">
+        <div class="container">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h1>Oops . . . An Error Occured</h1>
+            <p>Hint: {{ message }}</p>
+            <a href="signup">Go back</a>
+        </div>
     </div>
 
 </body>

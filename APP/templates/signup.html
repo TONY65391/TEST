@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/general.css">
-
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title>Signup - MovieBox</title>
@@ -14,7 +14,7 @@
     <header>
         <div>
             <h1><a href="home">
-                <i class="fa-solid fa-video"></i>
+                <img src="/static/images/favicon.png" alt="">
                 MovieBox</a></h1>
         </div>
 
@@ -41,13 +41,16 @@
     <div class="container">
         <div class="sub">
             <h1>Signup - MovieBox</h1>
+            <ol id="error"></ol>
             <h4>Already have an account? <a href="login">Login</a></h4>
             <form action="formhandler" method="post" enctype="multipart/form-data">
                 {{ message }}
                 {% csrf_token %}
                 {{ signupform.as_p }}
-                
+                <h4>By signing up, you agree to MovieBox and the privacy policy</h4>
                 <button type="submit">Signup</button>
+                <h4>{{usernames}}</h4>
+                <h4>{{emails}}</h4>
             </form>
         </div>
     </div>
