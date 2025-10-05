@@ -341,45 +341,88 @@ form button:hover{
 form p input[type="checkbox"]{
     accent-color: green;
 }
-ol{
-    margin: 10px 0 20px 0px;
-    list-style: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-variant: small-caps;
-    text-transform: capitalize;
-    position: relative;
-    display: block;
+
+.error.show{
+    animation: showError 0.3s ease-in-out forwards;
 }
-ol li{
-    margin-top: 5px;
+@keyframes showError{
+    from{transform: translateY(20px); opacity: 0; pointer-events: none; visibility: hidden;}
+    to{transform: translateY(0px); opacity: 1; pointer-events: all; visibility: visible;}
 }
-#error.bad{
-    background: rgb(211, 78, 78)
+.error.hidden{
+    animation: hideError 0.3s ease-in-out forwards;
 }
-#error.good{
-    background: rgb(6, 70, 6);
-}
-#error.good::before,
-#error.bad::before{
-    content: "";
-    width: 0%;
-    height: 2px;
-    background: linear-gradient(to right, white, rgb(6, 70, 6));
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    border-radius: 10px;
-    animation: error 1s ease-in-out infinite alternate-reverse;
-}
-#error.bad::before{
-    background: linear-gradient(to right, white, rgb(211, 78, 78));
-}
-@keyframes error{
-    from{width: 2%;}
-    to{width: 100%;}
+@keyframes hideError{
+    to{transform: translateY(20px); opacity: 0; pointer-events: none; visibility: hidden;}
+    from{transform: translateY(0px); opacity: 1; pointer-events: all; visibility: visible;}
 }
 
+.error{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -70px;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.9);
+    visibility: hidden;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.error .cont{
+    border: 1px solid;
+    border-image: linear-gradient(red, blue) 1;
+    overflow: hidden;
+    border-radius: 10px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    font-variant: small-caps;
+}
+.error .cont ol{
+    list-style: none;
+    margin-top: 20px;
+}
+.error .cont ol li{
+    color: rgb(189, 30, 30);
+    font-weight: 600;
+    line-height: 1.5;
+}
+.error .cont .options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.error .cont .options button{
+    font-variant: small-caps;
+    padding: 5px 30px;
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+}
+.error .cont .options button::before,
+.error .cont .options button::after{
+    content: "";
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    background: conic-gradient(red, blue, red);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    padding: 3px;
+    filter: blur(5px);
+    transition: filter 0.2s ease-in-out;
+}
+.error .cont .options button:hover::before{
+    filter: blur(20px);
+}
 
 @media screen and (max-width: 768px) {
     header{

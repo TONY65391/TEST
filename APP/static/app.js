@@ -6,7 +6,13 @@ const usernameInput = document.getElementById('id_username');
 const emailInput = document.getElementById('id_email');
 const passwordInput = document.getElementById('id_password');
 const pictureInput = document.getElementById('id_Profile_Picture');
-const error_message = document.getElementById('error');
+const error_list = document.querySelector('.error .cont ol');
+const errorBtn = document.querySelector('.error .cont .options button');
+
+errorBtn.addEventListener('click', () => {
+    document.querySelector('.error').classList.remove('show');
+    document.querySelector('.error').classList.add('hidden');
+})
 
 menuBtn.onclick = () => {
     menuBtn.classList.toggle('open');
@@ -20,57 +26,37 @@ menuBtn.onclick = () => {
 }
 
 const allInputs = [...document.querySelectorAll('form input')];
-var timeout;
-
-function Timer(){
-    clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-        error_message.style.display = 'none';
-    }, 1000);
-}
-
-allInputs.forEach(input => {
-    input.addEventListener('input', () => {
-        Timer();
-        error_message.style.display = '';
-        error_message.innerHTML = '😎 typing . . .'
-        error_message.classList.remove('bad');
-        error_message.classList.add('good');
-    })
-})
-
 
 form.addEventListener('submit', (e) => {
 
     if (emailInput){
         error = Signup(usernameInput.value, emailInput.value, passwordInput.value);
         if (error.length > 0){
-            error_message.innerText = "";
-            e.preventDefault()
+            e.preventDefault();
+            document.querySelector('.error').classList.add('show');
+            document.querySelector('.error').classList.remove('hidden');
+
+            error_list.innerHTML = "";
             for (i = 0; i < error.length; i++){
-                const errorItem = document.createElement('li');
-                errorItem.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> ' + error[i];
-                error_message.style.display = '';
-                error_message.append(errorItem);
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${error[i]}`;
+                error_list.append(li);
             }
-            error_message.classList.remove('good');
-            error_message.classList.add('bad');
-        };
+        }
     }
     else{
         error = Login(usernameInput.value, passwordInput.value);
         if (error.length > 0){
-            error_message.innerText = "";
-            e.preventDefault()
+            e.preventDefault();
+            document.querySelector('.error').classList.add('show');
+            document.querySelector('.error').classList.remove('hidden');
+
+            error_list.innerHTML = "";
             for (i = 0; i < error.length; i++){
-                const errorItem = document.createElement('li');
-                errorItem.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> ' + error[i];
-                error_message.style.display = '';
-                error_message.append(errorItem);
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> ${error[i]}`;
+                error_list.append(li);
             }
-            error_message.classList.remove('good');
-            error_message.classList.add('bad');
         }
     }
 
