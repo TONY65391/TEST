@@ -364,7 +364,7 @@ form p input[type="checkbox"]{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -70px;
+    margin-top: -67px;
     z-index: 1;
     background: rgba(0, 0, 0, 0.9);
     visibility: hidden;
@@ -384,7 +384,7 @@ form p input[type="checkbox"]{
     margin-top: 20px;
 }
 .error .cont ol li{
-    color: rgb(189, 30, 30);
+    color: rgb(226, 105, 105);
     font-weight: 600;
     line-height: 1.5;
 }
