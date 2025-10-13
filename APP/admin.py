@@ -17,4 +17,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ['id','title', 'release_date', 'description', 'director']
+    list_display = ['id','title', 'release_date', 'description', 'director', 'picture']
