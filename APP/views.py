@@ -30,23 +30,24 @@ def formhandler(request):
     if request.POST and request.FILES:
         usernameExists = UserProfile.objects.filter(username = request.POST["username"]).exists()
         emailExists = UserProfile.objects.filter(email = request.POST["email"]).exists()
+        passwordExists = UserProfile.objects.filter(password = request.POST["password"]).exists()
         form = SignupForm(request.POST, request.FILES)
         error = loader.get_template('error.html')
-        try:
-            usernameExists or emailExists
-            form.is_valid()
-            form.save()
-            return redirect("login")
-        except:
-            context = {'message' : form.errors}
+        
+        if usernameExists or emailExists or passwordExists:
+            context = {'message' : 'Username or password or email already exists'}
             return HttpResponse(error.render(request=request, context=context))
+        else:
+            if form.is_valid():
+                form.save()
+                return redirect("login")
+            else:
+                context = {'message' : form.errors}
+                return HttpResponse(error.render(request=request, context=context))
         
     elif request.GET:
         try:
             user = UserProfile.objects.get(username = request.GET["username"]) and UserProfile.objects.get(password = request.GET["password"])
-            # username = request.GET["username"]
-            # password = request.GET["password"]
-            # return redirect("profile", {'username':username, 'password':password})
             template = loader.get_template('profile.html')
             context = {
                 'user':user,
@@ -54,6 +55,6 @@ def formhandler(request):
             return HttpResponse(template.render(request=request, context=context))
         except:
             template = loader.get_template('error.html')
-            context = {'message' : 'Username or password does not exist', 'path':'login'}
+            context = {'message' : 'Username or password does not exist', 'path':'signup'}
             return HttpResponse(template.render(request=request, context=context))
         
