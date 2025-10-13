@@ -3,9 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/profile.css">
+    <!-- /static/images/favicon.png -->
+    <link rel="shortcut icon" href="{{user.Profile_Picture}}" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>{{user.name}}'s Profile</title>
 </head>
 <body>
-    <h1>Name: {{user.name}}</h1>
+    <header>
+        <div>
+            <h1><a href="home">
+            <img src="/static/images/favicon.png" alt="">
+            MovieBox</a></h1>
+        </div>
+
+        <nav>
+            <div></div>
+            <div></div>
+            <div></div>
+        </nav>
+
+        <div class="options">
+            <a href="profile/dashboard">Dashboard</a>
+            <a href="profile/watch-list">Watchlist</a>
+            <a href="profile/favorites">Favorites</a>
+            <a href="profile/watch-history">Watch History</a>
+            <a href="profile/settings">Settings</a>
+        </div>
+
+        <div class="links">
+            <a href="signup">
+                <i class="fa-solid fa-user-plus"></i>
+                Signup
+            </a>
+
+            <a href="login">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                Login
+            </a>
+        </div>
+    </header>
+
+
+    <main>
+        <section>
+            <div class="search">
+                <div>
+                    <label for="search"><i class="fa-solid fa-magnifying-glass"></i></label>
+                    <input type="search" list="movies" id="search" placeholder="movies . . .">
+
+                    <datalist id="movies">
+                        {% for movie in movies %}
+                            <option value="{{movie.title}}">{{movie.title}}</option>
+                        {% endfor %}
+                    </datalist>
+
+                </div>
+                <i class="fa-solid fa-gamepad"></i>
+            </div>
+        </section>
+
+        <section>
+            <div class="category">
+                <p class="active">Trending</p> <p>Live</p>
+                <p>Music</p>  <p>TV/Series</p>
+                <p>Movie</p>  <p>Animation</p>
+                <p>Kids</p>   <p>Education</p>
+                <p>Game</p>   <p>ShortTV</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="trending">
+                <div class="movies">
+                    {% for movie in movies %}
+                        <div class="movie">
+                            <img src="{{movie.picture}}" alt="{{movie.title}}">
+                            <p class="title">{{movie.title}}</p>
+                            <p class="download"><a href=""><i class="fa-solid fa-download"></i> Free download</a></p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
+<script src="/static/app.js" defer></script>
 </html>

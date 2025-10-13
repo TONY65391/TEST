@@ -11,7 +11,7 @@
     <title>Error - MovieBox</title>
 </head>
 <body class="error">
-
+    
     <header>
         <div>
             <h1><a href="home">
@@ -36,19 +36,17 @@
                 Login
             </a>
         </div>
-
     </header>
 
 
-    <div class="sub">
-        <div class="container">
+    <div class="container">
+        <div class="sub">
             <i class="fa-solid fa-triangle-exclamation"></i>
-            <h1>Oops . . . An Error Occured</h1>
-            <p>Hint: {{ message }}</p>
-            <a href="signup">Go back</a>
+            <h1>Oops ... something went wrong</h1>
+            <p>Hint: {{message}}</p>
+            <a href="{{path}}">Go back</a>
         </div>
     </div>
-
 </body>
 <script src="/static/app.js" defer></script>
 </html>

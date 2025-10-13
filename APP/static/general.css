@@ -6,6 +6,17 @@
     user-select: none;
     transition: all 0.3s ease;
 }
+:root{
+    --light-green: #83E68C;
+    --soft-green: #7CE292;
+    --medium-green: #79DF95;
+    --bright-lime-green: #88E987;
+}
+
+body{
+    width: min(1300px, 100%);
+    margin: auto;
+}
 
 /* SIGNUP and LOGIN */
 body[class="signup"],
@@ -20,6 +31,95 @@ body[class="signup"] header,
 body[class="login"] header,
 body[class="error"] header{
     background: rgba(0,0,0,0.6);
+}
+
+
+
+body[class="signup"] .bug.show,
+body[class="login"] .bug.show{
+    animation: showBug 0.4s ease-in-out forwards;
+}
+@keyframes showBug{
+    from{transform: translateY(30px); pointer-events: none; visibility: hidden; opacity: 0;}
+    to{transform: translateY(0px); pointer-events: all; visibility: visible; opacity: 1;}
+}
+
+body[class="signup"] .bug.hide,
+body[class="login"] .bug.hide{
+    animation: hideBug 0.4s ease-out forwards;
+}
+@keyframes hideBug{
+    from{transform: translateY(0px); pointer-events: all; visibility: visible; opacity: 1;}
+    to{transform: translateY(50px); pointer-events: none; visibility: hidden; opacity: 0;}
+}
+body[class="signup"] .bug,
+body[class="login"] .bug{
+    position: fixed;
+    visibility: hidden;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body[class="signup"] .bug .cont,
+body[class="login"] .bug .cont{
+    padding: 20px;
+    width: min(450px, 90%);
+    border: 2px solid;
+    border-image: conic-gradient(red, blue, red) 1;    
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    font-variant: small-caps;
+}
+body[class="login"] .bug .cont h3,
+body[class="signup"] .bug .cont h3{
+    font-size: clamp(25px, 5vw, 30px);
+    margin-bottom: 20px;
+}
+body[class="signup"] .bug .cont ol li,
+body[class="login"] .bug .cont ol li{
+    list-style: none;
+    line-height: 1.5;
+    color: rgb(172, 61, 61);    
+}
+body[class="signup"] .bug .cont button,
+body[class="login"] .bug .cont button{
+    border: none;
+    color: white;
+    margin-top: 20px;
+    padding: 5px 30px;
+    background: black;
+    position: relative;
+    border-radius: 5px;
+    cursor: pointer;
+}
+body[class="signup"] .bug .cont button::before,
+body[class="login"] .bug .cont button::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: conic-gradient(red, blue, red);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    padding: 2px;
+    transition: filter 0.5s ease;
+    filter: blur(3px);
+}
+body[class="signup"] .bug .cont button:hover::before,
+body[class="login"] .bug .cont button:hover::after{
+    filter: blur(10px);
 }
 
 
@@ -95,92 +195,82 @@ body[class="home"] .container .sub .links a:hover::before{
 
 
 /* ERROR PAGE */
+
 body[class="error"]{
-    background: rgb(1, 27, 27);
+    background: rgb(43, 43, 65);
     color: white;
-    min-height: 100vh;
-    flex-direction: column;
+
 }
-body[class="error"] .sub{
+body[class="error"] .container{
+    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -62px;
-    min-height: 100vh;
+    flex-direction: column;
+    margin-top: -64px;
 }
-body[class="error"] .container{
-    text-align: center;
-    width: min(400px, 80%);
-    background: black;
-    padding: 30px;
-    position: relative;
-    border-radius: 5px;
+body[class="error"] .container .sub{
+    padding: 20px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    -webkit-backdrop-filter: blur(10px) brightness(70%);
+    backdrop-filter: blur(10px) brightness(70%);
+    border-radius: 5px;
+    background: black;
+    width: min(500px, 90%);
+    border: 2px solid;
+    border-image: conic-gradient(red, blue, red) 1;
+    text-align: center;
+    line-height: 1.5;
 }
-@property --angle{
-    initial-value: 0deg;
-    syntax: '<angle>';
-    inherits: False;
+body[class="error"] .container .sub h1{
+    font-variant: small-caps;
+    text-transform: capitalize;
 }
-body[class="error"] .container::after,
-body[class="error"] .container::before{
+body[class="error"] .container .sub i{
+    font-size: clamp(25px, 10vw, 50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    border-radius: 50%;
+    padding: 20px 50px;
+    background: rgb(233, 62, 62);
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px wheat;
+}
+body[class="error"] .container .sub a{
+    text-decoration: none;
+    color: white;
+    padding: 10px 30px;
+    display: block;
+    margin: 20px auto 0px auto;
+    width: fit-content;
+    border-radius: 5px;
+    background: black;
+    position: relative;
+}
+body[class="error"] .container .sub a::before,
+body[class="error"] .container .sub a::after{
     content: "";
-    width: 100%;
-    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
+    background: conic-gradient(red, blue, red);
+    height: 100%;
+    width: 100%;
+    border-radius: inherit;
+    padding: 2px;
     transform: translate(-50%, -50%);
-    z-index: -1;
-    background: conic-gradient(from var(--angle), rgb(90, 37, 37), rgb(39, 39, 107), rgb(90, 37, 37));
-    padding: 3px;
+    z-index: -1;    
+    transition: filter 0.4s ease;
+    filter: blur(5px);
+
+}
+body[class="error"] .container .sub a:hover::after,
+body[class="error"] .container .sub a:hover::before{
     filter: blur(20px);
-    animation: spin 2s linear infinite;
 }
-@keyframes spin{
-    0%{filter: blur(20px); --angle:0deg;}
-    50%{filter: blur(40px); --angle:180deg;}
-    100%{filter: blur(20px); --angle:360deg;}
-}
-body[class="error"] .container i{
-    font-size: 50px;
-    padding: 30px;
-    background: rgb(245, 78, 78);
-    width: 110px;
-    border-radius: 50%;
-    margin: 0 auto 20px auto;
-    box-shadow: 0px 0px 30px rgb(245, 78, 78);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    filter: drop-shadow(2px 4px 3px black);
-}
-body[class="error"] .container h1{
-    font-variant: small-caps;
-    margin-bottom: 10px;
-    line-height: 1.5;
-}
-body[class="error"] .container a{
-    text-decoration: none;
-    color: white;
-    background: black;
-    display: block;
-    border: 2px solid white;
-    padding: 5px 30px;
-    width: fit-content;
-    margin: 20px auto 0px auto;
-    border-radius: 3px;
-    box-shadow: 4px 2px 4px white;
-}
-body[class="error"] .container a:hover{
-    border-radius: 20px;
-    box-shadow: 0px 0px 0px white;
-}
-body[class="error"] .container p{
-    line-height: 1.5;
-}
-
-
 
 /* HEADER */
 header{
@@ -343,88 +433,6 @@ form p input[type="checkbox"]{
 
 
 
-.error.show{
-    animation: showError 0.3s ease-in-out forwards;
-}
-@keyframes showError{
-    from{transform: translateY(20px); opacity: 0; pointer-events: none; visibility: hidden;}
-    to{transform: translateY(0px); opacity: 1; pointer-events: all; visibility: visible;}
-}
-.error.hidden{
-    animation: hideError 0.3s ease-in-out forwards;
-}
-@keyframes hideError{
-    0%{transform: translateY(0px); opacity: 1; pointer-events: all; visibility: visible;}
-    50%{transform: translateY(-20px); opacity: 0.5; pointer-events: none; visibility: visible;}
-    100%{transform: translateY(20px); opacity: 0; pointer-events: none; visibility: hidden;}
-}
-.error{
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: -67px;
-    z-index: 1;
-    background: rgba(0, 0, 0, 0.9);
-    visibility: hidden;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.error .cont{
-    border: 1px solid;
-    border-image: linear-gradient(red, blue) 1;
-    overflow: hidden;
-    border-radius: 10px;
-    padding: 20px;
-    backdrop-filter: blur(10px);
-    font-variant: small-caps;
-    width: min(450px, 95%);
-}
-.error .cont ol{
-    list-style: none;
-    margin-top: 20px;
-}
-.error .cont ol li{
-    color: rgb(226, 105, 105);
-    font-weight: 600;
-    line-height: 1.5;
-}
-.error .cont .options{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-.error .cont .options button{
-    font-variant: small-caps;
-    padding: 5px 30px;
-    border: none;
-    background: black;
-    color: white;
-    border-radius: 5px;
-    position: relative;
-    cursor: pointer;
-}
-.error .cont .options button::before,
-.error .cont .options button::after{
-    content: "";
-    height: 100%;
-    width: 100%;
-    border-radius: inherit;
-    background: conic-gradient(red, blue, red);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    padding: 3px;
-    filter: blur(5px);
-    transition: filter 0.2s ease-in-out;
-}
-.error .cont .options button:hover::before{
-    filter: blur(20px);
-}
 
 @media screen and (max-width: 768px) {
     header{
@@ -480,10 +488,13 @@ form p input[type="checkbox"]{
         padding: 5px 40px;
     }
 
-    body[class="error"] .container i{
-        font-size: 30px;
+
+    body[class="error"] .container .sub i{
         padding: 20px 10px;
         width: 80px;
         height: 80px;
+    }
+    body[class="error"] .container .sub a{
+        padding: 5px 20px;
     }
 }
